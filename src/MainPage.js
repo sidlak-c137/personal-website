@@ -1,9 +1,10 @@
 import React from 'react'
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@material-ui/core/Avatar'
 import ReactDOM from 'react-dom'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 import './MainPage.css'
 import avatar from './data/photos/my-photo.jpg'
+import banner from './data/photos/dev-black.png'
 import { Link, Element} from 'react-scroll'
   
 class MainPage extends React.Component {
@@ -13,7 +14,24 @@ class MainPage extends React.Component {
             <div className="horizonal-align">
                 <body>
                     <Element name="content1" className="element-top">
-                        hello1
+                        <div className="banner">
+                            <img src={banner} alt="code banner"/>
+                        </div>
+                        <div class="container">
+                            <header class="major">
+                                <h2>cout {'<<'} "Hello, I am Sid!";</h2>
+                                <p>
+                                    <pre><code> {'>'}   Hello, I am Sid!</code></pre>
+                                </p>
+                            </header>
+                            <p>
+                                <i><b>Welcome to my page! You must be wondering who I am...</b></i> <br /> <br /> Well let me give
+                                you a brief introduction. My name is Sidharth, but most people call me Sid. I am currently 
+                                a sophomore at the University of Washington (Seattle) completing my bachelor's degree in Computer Engineering at the <a
+                                    href="https://www.cs.washington.edu/" target="_blank" rel="noreferrer"> Paul G. Allen School of Computer
+                                    Science and Engineering</a>. I am also aiming to get a minor in Mathematics. 
+                            </p>
+                        </div>
                     </Element>
                     <Element name="content2" className="element">
                         hello2
@@ -46,12 +64,12 @@ class MainPage extends React.Component {
                             -- Seattle</p>
                     </div>
                     <div className="nav">
-                            <Link className="button" activeClass="active" to="content1" spy={true} smooth={true} duration={500}><a href="#1">About</a></Link>
-                            <Link className="button" activeClass="active" to="content2" spy={true} smooth={true} duration={500}><a href="#2">Tech Skills</a></Link>
-                            <Link className="button" activeClass="active" to="content3" spy={true} smooth={true} duration={500}><a href="#3">College Life</a></Link>
-                            <Link className="button" activeClass="active" to="content4" spy={true} smooth={true} duration={500}><a href="#4">Work Experiences</a></Link>
-                            <Link className="button" activeClass="active" to="content5" spy={true} smooth={true} duration={500}><a href="#5">Research</a></Link>
-                            <Link className="button" activeClass="active" to="content6" spy={true} smooth={true} duration={500}><a href="#6">Contact Me!</a></Link>
+                            <Link className="button" activeClass="active" to="content1" spy={true} smooth={true} duration={500}><a className="a" href="#1">About</a></Link>
+                            <Link className="button" activeClass="active" to="content2" spy={true} smooth={true} duration={500}><a className="a" href="#2">Tech Skills</a></Link>
+                            <Link className="button" activeClass="active" to="content3" spy={true} smooth={true} duration={500}><a className="a" href="#3">College Life</a></Link>
+                            <Link className="button" activeClass="active" to="content4" spy={true} smooth={true} duration={500}><a className="a" href="#4">Work Experiences</a></Link>
+                            <Link className="button" activeClass="active" to="content5" spy={true} smooth={true} duration={500}><a className="a" href="#5">Research</a></Link>
+                            <Link className="button" activeClass="active" to="content6" spy={true} smooth={true} duration={500}><a className="a" href="#6">Contact Me!</a></Link>
                     </div>
                     <div className="extra"></div>
                 </div>

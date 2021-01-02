@@ -1,13 +1,16 @@
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 .horizonal-align {
     display: flex;
-    width: 100vw;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Quicksand', sans-serif;
     font-size: large;
 }
 
 body {
     background-color: rgb(243, 243, 243);
-    min-width: max(77.5vw, calc(100vw - 450px));
+    width: calc(100vw - 350px);
     height: 100vh;
     margin: 0 !important;
     padding: 0 !important;
@@ -15,9 +18,7 @@ body {
 
 .menu {
     background-color: #4F90CD;
-    width: 22.5vw;
-    max-width: 450px;
-    min-width: 350px;
+    width: 350px;
     height: 100vh;
     align-self: flex-end;
     position: fixed;
@@ -30,21 +31,32 @@ body {
 }
 
 .element {
-    min-height: 900px;
+    min-height: 500px;
     height: fit-content;
-    width: auto;
-    margin-top: 5px;
     background-color: white;
-    padding: 20px;
+    width: 100%;
+    display: flex;
+    margin: auto;
+    margin-top: 5px;
 }
 
 .element-top {
-    min-height: 900px;
+    min-height: 500px;
     height: fit-content;
-    width: auto;
     background-color: white;
-    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
+
+.banner img {
+    height: 20vw;
+    min-height: 300px;
+    object-fit: cover;
+    width: 100%;
+}
+
 
 .spacer {
     min-height: 30vh;
@@ -68,14 +80,12 @@ body {
     align-self: center;
 }
 
-a {
+.a {
     display: inline-block;
     height: 5vh;
     min-height: 45px;
-    width: 22.5vw;
-    max-width: 450px;
-    min-width: 350px;
-    line-height: min(5vh, 45px);
+    width: 100%;
+    line-height: max(5vh, 45px);
     text-align: center;
     color: #ffffff;
     text-decoration: none;
@@ -84,7 +94,7 @@ a {
     border-bottom-color: #81a3c4;
 }
 
-a:hover {
+.a:hover {
     background-color: #81a3c4 !important;
 }
 
@@ -94,13 +104,25 @@ a:hover {
     border-bottom-color: #ffffff;
 }
 
-p {
+.header p {
     text-align:center;
     align-self: center;
     font-weight: lighter;
     color: rgba(255, 255, 255, 0.76);
     line-height: 2em;
     font-size: medium;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 40px 70px;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+    line-height: 1.75em;
+    color: #888;
+    margin: auto;
 }
 
 .name {
@@ -113,19 +135,19 @@ p {
 }
 
 .extra {
-    min-height: 10vh;
+    min-height: 7.5vh;
     align-self: center;
     align-content: center;
 }
 
 .header {
     height: 30vh;
-    min-height: 400px;
+    min-height: 350px;
     align-self: center;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     margin-top: 20px;
 }
 
@@ -136,6 +158,16 @@ p {
 
 /*Fonts*/
 
+a {
+    color: #888;
+    text-decoration: underline;
+}
+
+a:hover {
+    color:#4F90CD;
+    text-decoration: none;
+}
+
 strong, b {
     color: #777;
     font-weight: 700;
@@ -143,6 +175,7 @@ strong, b {
 
 
 h1, h2, h3, h4, h5, h6 {
+    font-family: 'Quicksand', sans-serif;
     color: #777;
     font-weight: 700;
     line-height: 1em;
@@ -181,11 +214,68 @@ h6 {
 }
 
 code {
-    background: #555;
+    background: rgb(77, 77, 77);
     border-radius: 5px;
     color: #fff;
     font-family: "Source Code Pro", monospace;
-    font-size: 0.9em;
+    font-size: 0.6em;
     margin: 0 0.25em;
     padding: 0.25em 0.65em;
 }
+
+pre {
+    font-family: "Source Code Pro", monospace;
+    font-size: 0.9em;
+}
+
+    pre code {
+        display: block;
+        line-height: 1em;
+        overflow-x: hidden;
+        padding: 1em 1.5em;
+    }
+
+/*Section Fonts*/
+
+section.special, article.special {
+    text-align: center;
+}
+
+header p {
+    color: #aaa;
+    position: relative;
+    margin: 0 0 1.6875em 0;
+}
+
+header h2 + p {
+    font-size: 1.25em;
+    margin-top: -0.5em;
+    line-height: 1.5em;
+}
+
+header h3 + p {
+    font-size: 1.1em;
+    margin-top: -0.35em;
+    line-height: 1.5em;
+}
+
+header h4 + p,
+header h5 + p,
+header h6 + p {
+    font-size: 0.9em;
+    margin-top: -0.25em;
+    line-height: 1.5em;
+}
+
+header.major h2 {
+    color: #4F90CD;
+    font-size: 3.5em;
+    font-weight: 500;
+}
+
+    header.major h2 + p {
+        color: #777;
+        font-size: 1.75em;
+        font-weight: 300;
+        margin-top: -0.75em;
+    }
