@@ -1,7 +1,15 @@
 import React from 'react'
+import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar'
 import ReactDOM from 'react-dom'
 import Button from '@material-ui/core/Button'
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import CodeIcon from '@material-ui/icons/Code';
 import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
@@ -22,8 +30,40 @@ import keeperhr from './data/photos/keeperhr.png'
 import launch from './data/photos/launch.png'
 import resume from "./data/files/Lakshmanan_Sidharth_CE_Resume.pdf"
 import { Link, Element} from 'react-scroll'
+
+const StyledTableCell = withStyles({
+    head: {
+      backgroundColor: "#fff",
+    }
+  })(TableCell);
   
+  const StyledTableRow = withStyles({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: "rgb(243, 243, 243)",
+      },
+    },
+  })(TableRow);
+
 class MainPage extends React.Component {
+
+    createData = (name, calories, fat, carbs, protein) => {
+        return { name, calories, fat, carbs, protein };
+      }
+
+    currData = (name, url, id_temp, description) => {
+        var id = <h5 className="table"><a href={url} target="_blank" rel="noreferrer">{id_temp}</a></h5>
+        return { name, id, description}
+    }
+
+    pastData = (name, url, id_temp, date) => {
+        var id = <h5 className="table"><a href={url} target="_blank" rel="noreferrer">{id_temp}</a></h5>
+        return { name, id, date}
+    }
+
+    pastMData = (name, id, description, date) => {
+        return { name, id, description, date}
+    }
 
     listItem = (element, text) => {
         return (
@@ -39,6 +79,33 @@ class MainPage extends React.Component {
     }
 
     render() {
+        var currData = this.currData;
+        var pastData = this.pastData;
+        var pastMData = this.pastMData;
+        var currRows = [
+            currData('Foundations of Computing II (Statistics)', "http://courses.cs.washington.edu/courses/cse312/", "CSE 312", "Examines fundamentals of enumeration and discrete probability; applications of randomness to computing; polynomial-time versus NP; and NP-completeness."),
+            currData('Programming Languages', "http://courses.cs.washington.edu/courses/cse341/", "CSE 341", "Basic concepts of programming languages, including abstraction mechanisms, types, and scoping. Detailed study of several different programming paradigms, such as functional, object-oriented, and logic programming."),
+            currData('Data Structures & Parrallelism', "http://courses.cs.washington.edu/courses/cse332/", "CSE 332", "Covers abstract data types and structures including dictionaries, balanced trees, hash tables, priority queues, and graphs; sorting; asymptotic analysis; fundamental graph algorithms including graph search, shortest path, and minimum spanning trees; concurrency and synchronization; and parallelism."),
+        ];
+        var pastCSRows = [
+            pastData('Introduction to Embedded Systems', "http://courses.cs.washington.edu/courses/cse474/", "CSE 474", "Fall 2020"),
+            pastData('Foundations of Computing I (Discrete Math)', "http://courses.cs.washington.edu/courses/cse311/", "CSE 311", "Fall 2020"),
+            pastData('Systems Programming', "http://courses.cs.washington.edu/courses/cse333/", "CSE 333", "Summer 2020"),
+            pastData('Intermediate Data Programming', "http://courses.cs.washington.edu/courses/cse163/", "CSE 163", "Summer 2020"),
+            pastData('Hardware / Software Interface', "http://courses.cs.washington.edu/courses/cse351/", "CSE 351", "Winter 2020"),
+            pastData('Computer Programming II (Intro to Java II)', "http://courses.cs.washington.edu/courses/cse143/", "CSE 143", "Autumn 2019"),
+        ];
+        var pastMRows = [
+            pastMData('Statistical Methods in Engineering and Science', "STAT 390", "Concepts of probability and statistics. Conditional probability, independence, random variables, distribution functions. Descriptive statistics, transformations, sampling errors, confidence intervals, least squares and maximum likelihood. Exploratory data analysis and interactive computing. ", "Spring 2020"),
+            pastMData('Advanced Multivariable Calculus', "MATH 324", "Topics include double and triple integrals, the chain rule, vector fields, line and surface integrals. Culminates in the theorems of Green and Stokes, along with the Divergence Theorem.", "Spring 2020"),
+            pastMData('Matrix Algebra', "MATH 308", "Systems of linear equations, vector spaces, matrices, subspaces, orthogonality, least squares, eigenvalues, eigenvectors, applications. For students in engineering, mathematics, and the sciences.", "Winter 2020"),
+            pastMData('Intro to Differential Equations', "MATH 307", "Introductory course in ordinary differential equations. Includes first- and second-order equations and Laplace transform.", "Winter 2020"),
+            pastMData('Calculus III', "MATH 126", "Third quarter in calculus sequence. Introduction to Taylor polynomials and Taylor series, vector geometry in three dimensions, introduction to multivariable differential calculus, double integrals in Cartesian and polar coordinates.", "Autumn 2019"),
+        ];
+        var pastERows = [
+            pastMData('Fundamentals of Electrical Engineering', "EE215", "Introduction to electrical engineering. Basic circuit and systems concepts. Mathematical models of components. Kirchhoff's laws. Resistors, sources, capacitors, inductors, and operational amplifiers. Solution of first and second order linear differential equations associated with basic circuit forms.", "Summer 2020"),
+            pastMData('Electromagnetism', "PHYS 122", "Covers the basic principles of electromagnetism and experiments in these topics for physical science and engineering majors.", "Spring 2020"),
+        ];
         var styleButton = {
             background: '#4F90CD',
             borderRadius: 3,
@@ -46,7 +113,7 @@ class MainPage extends React.Component {
             color: 'white',
             height: 48,
             padding: '0 30px',
-        };     
+        };    
         return (
             <div className="horizonal-align">
                 <body>
@@ -54,8 +121,8 @@ class MainPage extends React.Component {
                         <div className="banner">
                             <img src={banner} alt="code banner"/>
                         </div>
-                        <div class="container">
-                            <header class="major">
+                        <div className="container">
+                            <header className="major">
                                 <h2>cout {'<<'} "Hello, I am Sid!";</h2>
                                 <p>
                                     <pre><code> {'>'}   Hello, I am Sid!</code></pre>
@@ -71,7 +138,7 @@ class MainPage extends React.Component {
                         </div>
                     </Element>
                     <Element name="content2" className="element">
-                        <div class="container">
+                        <div className="container">
                             <h3>Tech Skills</h3>
                             <Button
                                 variant="contained"
@@ -117,13 +184,13 @@ class MainPage extends React.Component {
                         </div>
                     </Element>
                     <Element name="content3" className="element">
-                        <div class="container">
+                        <div className="container">
                             <h3>Work Experiences</h3>
                             <p>Here is a brief summary of my previous internships. Please feel free to reach out to me if you
                                 are curious about my internship experiences.</p>
                             <div className="split underline">
                                 <div style={{flex: "50%", alignSelf:"center"}}>
-                                    <img src={ecsite} style={{width: "80%"}}/>
+                                    <img src={ecsite} style={{width: "80%"}} alt="company logo"/>
                                 </div>
                                 <div style={{flex: "50%"}}>
                                     <header>
@@ -149,7 +216,7 @@ class MainPage extends React.Component {
                             </div>
                             <div className="split underline">
                                 <div style={{flex: "50%", alignSelf:"center"}}>
-                                    <img src={keeperhr} style={{width: "80%", borderRadius: "50%"}}/>
+                                    <img src={keeperhr} style={{width: "80%", borderRadius: "50%"}} alt="company logo"/>
                                 </div>
                                 <div style={{flex: "50%"}}>
                                     <header>
@@ -180,7 +247,7 @@ class MainPage extends React.Component {
                             </div>
                             <div className="split">
                                 <div style={{flex: "50%", alignSelf:"center"}}>
-                                    <img src={launch} style={{width: "80%"}}/>
+                                    <img src={launch} style={{width: "80%"}} alt="company logo"/>
                                 </div>
                                 <div style={{flex: "50%"}}>
                                     <header>
@@ -208,7 +275,129 @@ class MainPage extends React.Component {
                         </div>
                     </Element>
                     <Element name="content4" className="element">
-                        hello4
+                        <div className="container">
+                            <h3>As a Learner...</h3>
+                            <section>
+                                <h4>Self-learnings</h4>
+                                <p>
+                                    I am constantly trying to acquire more knowledge about many topics in the vast field of
+                                    Computer Engineering. Whether it is inside a lecture hall or educating myself through google,
+                                    I am curious about the intersection between hardware and software. To keep myself motivated,
+                                    I try to teach myself something new on top of the learnings I acquire through coursework.
+                                </p>
+                                <h5>Current Topic: </h5>
+                                <blockquote>
+                                    <a href="https://dronelife.com/2020/03/13/the-newest-advance-in-3d-modeling-videogrammetry/#:~:text=The%20rise%20of%20videogrammetry%20is,and%20lowering%20barriers%20to%20adoption.&text=More%20recently%2C%20photogrammetry%20(a%20term,process%20images%20captured%20from%20drones." target="_blank" rel="noreferrer">Videogrammetry</a>
+                                </blockquote>
+                            </section>
+                            <section>
+                                <h5>Currently Enrolled Classes</h5>
+                                <TableContainer component={Paper}>
+                                    <Table aria-label="customized table">
+                                        <TableHead>
+                                        <TableRow>
+                                            <StyledTableCell><h4 className="table">Course Name</h4></StyledTableCell>
+                                            <StyledTableCell align="left"><h4 className="table">Course ID</h4></StyledTableCell>
+                                            <StyledTableCell align="left"><h4 className="table">Description</h4></StyledTableCell>
+                                        </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                        {currRows.map((row) => (
+                                            <StyledTableRow key={row.name}>
+                                                <StyledTableCell component="th" scope="row">
+                                                    <h5 className="table">{row.name}</h5>
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">{row.id}</StyledTableCell>
+                                                <StyledTableCell align="left"><h5 className="table">{row.description}</h5></StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </section>
+                            <br />
+                            <section>
+                                <h5>Computer Science Classes</h5>
+                                <TableContainer component={Paper}>
+                                    <Table aria-label="customized table">
+                                        <TableHead>
+                                        <TableRow>
+                                            <StyledTableCell><h4 className="table">Course Name</h4></StyledTableCell>
+                                            <StyledTableCell align="left"><h4 className="table">Course ID</h4></StyledTableCell>
+                                            <StyledTableCell align="left"><h4 className="table">Time Taken</h4></StyledTableCell>
+                                        </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                        {pastCSRows.map((row) => (
+                                            <StyledTableRow key={row.name}>
+                                                <StyledTableCell component="th" scope="row">
+                                                    <h5 className="table">{row.name}</h5>
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left">{row.id}</StyledTableCell>
+                                                <StyledTableCell align="left"><h5 className="table">{row.date}</h5></StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </section>
+                            <br />
+                            <section>
+                                <h5>Math Classes</h5>
+                                <TableContainer component={Paper}>
+                                    <Table aria-label="customized table">
+                                        <TableHead>
+                                        <TableRow>
+                                            <StyledTableCell><h4 className="table">Course Name</h4></StyledTableCell>
+                                            <StyledTableCell align="left"><h4 className="table">Course ID</h4></StyledTableCell>
+                                            <StyledTableCell align="left"><h4 className="table">Description</h4></StyledTableCell>
+                                            <StyledTableCell align="left"><h4 className="table">Time Taken</h4></StyledTableCell>
+                                        </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                        {pastMRows.map((row) => (
+                                            <StyledTableRow key={row.name}>
+                                                <StyledTableCell component="th" scope="row">
+                                                    <h5 className="table">{row.name}</h5>
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left"><h5 className="table">{row.id}</h5></StyledTableCell>
+                                                <StyledTableCell align="left"><h5 className="table">{row.description}</h5></StyledTableCell>
+                                                <StyledTableCell align="left"><h5 className="table">{row.date}</h5></StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </section>
+                            <br />
+                            <section>
+                                <h5>Other STEM Classes</h5>
+                                <TableContainer component={Paper}>
+                                    <Table aria-label="customized table">
+                                        <TableHead>
+                                        <TableRow>
+                                            <StyledTableCell><h4 className="table">Course Name</h4></StyledTableCell>
+                                            <StyledTableCell align="left"><h4 className="table">Course ID</h4></StyledTableCell>
+                                            <StyledTableCell align="left"><h4 className="table">Description</h4></StyledTableCell>
+                                            <StyledTableCell align="left"><h4 className="table">Time Taken</h4></StyledTableCell>
+                                        </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                        {pastERows.map((row) => (
+                                            <StyledTableRow key={row.name}>
+                                                <StyledTableCell component="th" scope="row">
+                                                    <h5 className="table">{row.name}</h5>
+                                                </StyledTableCell>
+                                                <StyledTableCell align="left"><h5 className="table">{row.id}</h5></StyledTableCell>
+                                                <StyledTableCell align="left"><h5 className="table">{row.description}</h5></StyledTableCell>
+                                                <StyledTableCell align="left"><h5 className="table">{row.date}</h5></StyledTableCell>
+                                            </StyledTableRow>
+                                        ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </section>
+                        </div>
                     </Element>
                     <Element name="content5" className="element">
                         hello5
