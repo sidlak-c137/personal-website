@@ -95,7 +95,7 @@ body {
 }
 
 .a:hover {
-    background-color: #81a3c4 !important;
+    opacity: 0.8;
 }
 
 .active a {
@@ -155,15 +155,29 @@ body {
     margin-top: 30px;
 }
 
+.muiButton {
+    color: white;
+    background-color: #4F90CD;
+}
+
+.split {
+    display: flex;
+}
+
+.split.underline {
+    border-bottom-style: solid;
+    border-color: rgb(243, 243, 243);
+    margin-bottom: 25px;
+}
 
 /*Fonts*/
 
-a {
+p a {
     color: #888;
     text-decoration: underline;
 }
 
-a:hover {
+p a:hover {
     color:#4F90CD;
     text-decoration: none;
 }
