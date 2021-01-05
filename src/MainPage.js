@@ -37,6 +37,7 @@ import afsl from './data/photos/afsl.png';
 import resume from "./data/files/Lakshmanan_Sidharth_CE_Resume.pdf";
 import { Link, Element} from 'react-scroll';
 import emailjs from 'emailjs-com';
+import {isMobileOnly} from 'react-device-detect';
 
 const StyledTableCell = withStyles({
     head: {
@@ -131,7 +132,7 @@ class MainPage extends React.Component {
         this.setState({[e.target.name]: e.target.value });
     }
 
-    render() {
+    renderWeb = () => {
         var currData = this.currData;
         var pastData = this.pastData;
         var pastMData = this.pastMData;
@@ -659,6 +660,14 @@ class MainPage extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    render() {
+        if (!isMobileOnly) {
+            return this.renderWeb();
+        } else {
+            return (<h5>Mobile view has not been created yet</h5>);
+        }
     }
 }
 
