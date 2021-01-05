@@ -297,8 +297,8 @@ class MainPage extends React.Component {
                                     <p>
                                         <b>What did I do?</b><br />
                                         During my internship, the application was still in the process of being developed, so I got to see the process of developing the
-                                        application from the gound up. This meant that I was able to "wear many hats" as I was the QA engineer, and a frontend developer.
-                                        This meant that I wa responsible for the creation of several front-end components as well as writing unit tests for every other component
+                                        application from the gound up. This meant that I was able to "wear many hats" as I was the QA engineer and a frontend developer.
+                                        As such, I created of several front-end components as well as writing unit tests for every other component
                                         (using a tool called Jest). Additionally, I was part of the marketing effort as we collected user input about the application. From
                                         this experience, I not only learned how to develop ReactJS based apps from the ground up, but I also got to experience the initial
                                         stages of a growing start-up. My work at KeeperHR allowed the frontend and backend developers to be able to be more efficient, as they
