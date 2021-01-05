@@ -1,7 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar'
-import ReactDOM from 'react-dom'
+import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -19,17 +18,25 @@ import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import WebIcon from '@material-ui/icons/Web';
 import GroupIcon from '@material-ui/icons/Group';
 import TextFieldsIcon from '@material-ui/icons/TextFields';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import MailIcon from '@material-ui/icons/Mail';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import './MainPage.css'
-import avatar from './data/photos/my-photo.jpg'
-import banner from './data/photos/dev-black.png'
-import ecsite from './data/photos/ecsite.jpg'
-import keeperhr from './data/photos/keeperhr.png'
-import launch from './data/photos/launch.png'
-import resume from "./data/files/Lakshmanan_Sidharth_CE_Resume.pdf"
-import { Link, Element} from 'react-scroll'
+import TextField from '@material-ui/core/TextField';
+import './MainPage.css';
+import avatar from './data/photos/my-photo.jpg';
+import banner from './data/photos/dev-white.jpg';
+import ecsite from './data/photos/ecsite.jpg';
+import keeperhr from './data/photos/keeperhr.png';
+import launch from './data/photos/launch.png';
+import seal from './data/photos/seal.png';
+import ecocar from './data/photos/ecocar.png';
+import afsl from './data/photos/afsl.png';
+import resume from "./data/files/Lakshmanan_Sidharth_CE_Resume.pdf";
+import { Link, Element} from 'react-scroll';
+import emailjs from 'emailjs-com';
 
 const StyledTableCell = withStyles({
     head: {
@@ -37,15 +44,24 @@ const StyledTableCell = withStyles({
     }
   })(TableCell);
   
-  const StyledTableRow = withStyles({
+const StyledTableRow = withStyles({
     root: {
-      '&:nth-of-type(odd)': {
+        '&:nth-of-type(odd)': {
         backgroundColor: "rgb(243, 243, 243)",
-      },
+        },
     },
-  })(TableRow);
+})(TableRow);
 
 class MainPage extends React.Component {
+
+    state = {
+        name: "",
+        subject: "",
+        email: "",
+        message: "",
+        error: "",
+        submitted: false,
+    }
 
     createData = (name, calories, fat, carbs, protein) => {
         return { name, calories, fat, carbs, protein };
@@ -78,6 +94,43 @@ class MainPage extends React.Component {
         );
     }
 
+    validate = () => {
+        var {name, subject, message, email} = this.state;
+        if (name === "") {
+            return false;
+        }
+        if (subject === "") {
+            return false;
+        }
+        if (message === "") {
+            return false;
+        }
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+    submit = async (e) => {
+        var {name, subject, message, email} = this.state;
+        var templateParams = {
+            from_name: name,
+            from_subject: subject,
+            from_message: message,
+            from_email: email
+        }
+        await emailjs.send('service_qmyn4v3','template_rj5l7kv', templateParams, 'user_RCHqxqia7CNjOw3h1v56V')
+        .then((response) => {
+           console.log('SUCCESS!', response.status, response.text);
+           this.setState({submitted: true});
+        }, (err) => {
+           console.log('FAILED...', err);
+           this.setState({error: "Failed to send message, try again!"});
+        });
+    } 
+
+    handleChange = (e) => {
+        this.setState({[e.target.name]: e.target.value });
+    }
+
     render() {
         var currData = this.currData;
         var pastData = this.pastData;
@@ -108,6 +161,14 @@ class MainPage extends React.Component {
         ];
         var styleButton = {
             background: '#4F90CD',
+            borderRadius: 3,
+            border: 0,
+            color: 'white',
+            height: 48,
+            padding: '0 30px',
+        };
+        var styleButtonDis = {
+            background: 'rgb(243, 243, 243)',
             borderRadius: 3,
             border: 0,
             color: 'white',
@@ -400,14 +461,180 @@ class MainPage extends React.Component {
                         </div>
                     </Element>
                     <Element name="content5" className="element">
-                        hello5
+                    <div className="container">
+                            <h3>Research</h3>
+                            <p>Here is a brief summary of the research I am currently doing or have previously done at UW. Please feel free to reach out to me if you
+                                are curious about my research experiences.</p>
+                            <div className="split underline">
+                                <div style={{flex: "50%", alignSelf:"center"}}>
+                                    <img src={seal} style={{width: "80%"}} alt="lab logo"/>
+                                </div>
+                                <div style={{flex: "50%"}}>
+                                    <header>
+                                        <h4>SEAL</h4>
+                                        <p>
+                                            December 2020 - Present | Undergraduate Researcher
+                                        </p>
+                                    </header>
+                                    <p>
+                                        <b>What is SEAL?</b><br />
+                                        <a href="https://uwseal.org/" target="_blank" rel="noreferrer"> SEAL</a>, the Sensors, Energy, and Automation Laboratory at the
+                                        University of Washington, is a lab focused on projects relating to sensors and sensor array design using electric, magnetic, acoustic, and thermal fields.
+                                        In addition, SEAL focuses on developing new products for medical and green energy applications that utilize this expertise in sensors. The lab performs R{'&'}D 
+                                        and P{'&'}D by working in collaboration with the NIH, the NSF and other research organizations introducing cutting edge technology to the market.
+                                    </p>
+                                    <p>
+                                        <b>What do I do?</b><br />
+                                        Currently, I am working on a project to enable higher quality stoma care at a lower cost for people with intestinal or urinary diversion. In particular
+                                        we are aiming to provide a better, more accessable method to post-operative wafer fitting. To do this, we will develop and test an electronic imaging system
+                                        for hospital and home use for better preparation, application, and monitoring of stoma wafers, as well as for creating images of the stoma and peristomal area
+                                        for further analysis. The introduction of our system, the Stoma-Wafer Inspec-tion and Fit Tool (SWIFT), into modern healthcare will improve the quality of life,
+                                        mobility, independence, mood, self-confidence, and the overall health of ostomates.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="split underline">
+                                <div style={{flex: "50%", alignSelf:"center"}}>
+                                    <img src={ecocar} style={{width: "80%"}} alt="company logo"/>
+                                </div>
+                                <div style={{flex: "50%"}}>
+                                    <header>
+                                        <h4>EcoCAR</h4>
+                                        <p>
+                                            September 2019 - Present | PCM Researcher
+                                        </p>
+                                    </header>
+                                    <p>
+                                        <b>What is EcoCAR?</b><br />
+                                        <a href="https://green.uw.edu/promote/snapshots/uw-ecocar" target="_blank" rel="noreferrer"> EcoCar</a> is a club at the University of Washington that
+                                        competes in the <a href="https://avtcseries.org/ecocar-mobility-challenge/" target="_blank" rel="noreferrer"> EcoCar Mobility Challenge</a>.
+                                        The competition is sponsored by the U.S. Department of Energy, General Motors, MathWorks, and is managed by Argonne National Laboratory. Teams are
+                                        challenged to redesign a 2019 Chevrolet Blazer in order to reduce energy consumption and emissions, as well as apply SAE Level 2 automation. This
+                                        is done by implementing advanced propulsion systems, electrification, and vehicle connectivity, all while balancing factors such as emissions, safety,
+                                        utility, and consumer acceptability.
+                                    </p>
+                                    <p>
+                                        <b>What do I do?</b><br />
+                                        Currently, as a researcher in the Propulsion Controls and Modeling (PCM) team, I am working on developing a machine learning model that will be able to
+                                        add Adaptive Cruise Control (ACC) to the car. This means that the car must be able to stay within its lane and keep a set distance between the car and a
+                                        car in front of it. To do this, I am researching various ACC algorithms and figuring out which control algorithm would best fit our car's needs.
+                                        Furthermore, I am also developing a video processesing algorithm to figure out the distance between the leading car and our car. Then, after applying Baynesian
+                                        and Kalman filter techniques to incorporate the radar data, we will be able to get an accurate reading of the distance.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="split">
+                                <div style={{flex: "50%", alignSelf:"center"}}>
+                                    <img src={afsl} style={{width: "80%"}} alt="company logo"/>
+                                </div>
+                                <div style={{flex: "50%"}}>
+                                    <header>
+                                        <h4>AFSL</h4>
+                                        <p>
+                                            June 2018 - August 2018 | Researcher Intern (High School)
+                                        </p>
+                                    </header>
+                                    <p>
+                                        <b>What is AFSL?</b><br />
+                                        <a href="https://www.aa.washington.edu/afsl" target="_blank" rel="noreferrer"> AFSL</a>, the Autonomous Flight Systems Laboratory,
+                                        is a lab at the University of Washington that develops technology relevant to unmanned systems. Investigations consist of applying
+                                        advanced avionics, sensors, and other payloads to various platforms including off-the-shelf fixed wing and multi-rotor unmanned aerial
+                                        systems as well as customized platforms. A parallel objective is to integrate this technology into the flight mechanics and controls
+                                        courses in the Department of Aeronautics and Astronautics to provide students experience with realistic GNC systems.
+                                    </p>
+                                    <p>
+                                        <b>What did I do?</b><br />
+                                        As my first research opportunity, I was tasked with creating a management solution to keep track of all of the flight data such that
+                                        it could be analyzed with a click of a button. This was important because in the past, all of the data was kept in unmanaged excell
+                                        spreadsheets, which were thousands of rows long. Additionally, I was also on the team that was developing software to allow a drone
+                                        to be able to switch from vertical to horizontal flight in mid-air, allowing the drone to perform more complex maneuvers. This included
+                                        programming on a Raspberry Pi to control the hardware based on sensor inputs.  
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </Element>
                     <Element name="content6" className="element">
-                        hello6
+                        <div className="container">
+                            <h3>Connect With Me!</h3>
+                            <p>
+                                Click on the icons to get redirected to my other pages!
+                            </p>
+                            <div className="split">
+                                <div style={{display: "flex", flexWrap: "wrap", margin:"auto", justifyContent: "center"}}>
+                                    <a href="https://www.linkedin.com/in/sidharth-lakshmanan-30527a168/" target="_blank" rel="noreferrer"  style={{marginRight: "1em"}}>
+                                        <Avatar style={{ background: '#4F90CD' }}>
+                                            <LinkedInIcon/>
+                                        </Avatar>
+                                    </a>
+                                    <a href="https://github.com/s-lakshmanansi" target="_blank" rel="noreferrer" style={{marginRight: "1em"}}>
+                                        <Avatar style={{ background: '#4F90CD' }}>
+                                            <GitHubIcon/>
+                                        </Avatar>
+                                    </a>
+                                    <a href="mailto:sidlak@uw.edu" target="_blank" rel="noreferrer">
+                                        <Avatar style={{ background: '#4F90CD' }}>
+                                            <MailIcon/>
+                                        </Avatar>
+                                    </a>
+                                </div>
+                            </div>
+                            <br />
+                            <h5>Send me an Email!</h5>
+                            { !this.state.submitted ?
+                                <div className="split">
+                                    <div style={{display: "flex", flexWrap: "wrap", margin:"auto", justifyContent: "center"}}>
+                                        <form autoComplete="off" noValidate>
+                                            <TextField name="name" id="name" variant="outlined" label="Your Name" onChange={this.handleChange} style={{width:"350px", margin:"10px", marginRight:"20px"}}/>
+                                            <TextField name="email" id="email" variant="outlined" label="Your Email" onChange={this.handleChange} style={{width:"350px", margin:"10px", marginLeft:"20px"}}/>
+                                        </form>
+                                        <form autoComplete="off" noValidate>
+                                            <TextField name="subject" id="subject" variant="outlined" label="Subject" onChange={this.handleChange} style={{width:"740px", margin:"10px"}}/>
+                                        </form>
+                                        <form autoComplete="off" noValidate>
+                                            <TextField name="message" id="message" variant="outlined" label="Message" multiline rows={8} onChange={this.handleChange} style={{width:"740px", margin:"10px"}}/>
+                                        </form>
+                                        <form>
+                                            {this.state.error !== "" &&
+                                                <div style={{width:"740px", margin:"10px"}}>
+                                                   <h5 style={{color: "red"}}> {this.state.error} </h5> 
+                                                </div>
+                                            }
+                                        </form> 
+                                        <br />
+                                        {this.validate() ?
+                                            <Button
+                                                variant="contained"
+                                                style={styleButton}
+                                                onClick={this.submit}
+                                            >
+                                                Send Message
+                                            </Button>
+                                            :
+                                            <Button
+                                                variant="contained"
+                                                style={styleButtonDis}
+                                                disabled
+                                                onClick={this.submit}
+                                            >
+                                                Send Message
+                                            </Button>
+                                        }
+                                                    
+                                    </div>   
+                                </div>
+                            :
+                            <div>
+                                <p> Thanks! I will try to respond as soon as possible! </p>
+                            </div>
+                            }
+                        </div>
                     </Element>
-                    <Element name="space" className="spacer">
-                        hello7
-                    </Element>
+                    <div className="spacer">
+                        <div className="container">
+                            <p>&copy; Sidharth Lakshmanan. All rights reserved. Last Updated: 1/4/2021</p>
+                        </div>
+                    </div>
                 </body>
                 <div className="menu">
                     <div className="header">

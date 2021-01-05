@@ -59,8 +59,7 @@ body {
 
 
 .spacer {
-    min-height: 30vh;
-    height: fit-content;
+    height: calc(100vh - 740px);
     width: auto;
     background-color: rgb(243, 243, 243);
     padding: 20px;
@@ -199,7 +198,7 @@ h5 a {
 
 h5 a:hover {
     color:#4F90CD;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 strong, b {
