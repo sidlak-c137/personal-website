@@ -546,7 +546,7 @@ class MainPage extends React.Component {
                                     <p>
                                         <b>What did I do?</b><br />
                                         As my first research opportunity, I was tasked with creating a management solution to keep track of all of the flight data such that
-                                        it could be analyzed with a click of a button. This was important because in the past, all of the data was kept in unmanaged excell
+                                        it could be analyzed with a click of a button. This was important because in the past, all of the data was kept in unmanaged Excel
                                         spreadsheets, which were thousands of rows long. Additionally, I was also on the team that was developing software to allow a drone
                                         to be able to switch from vertical to horizontal flight in mid-air, allowing the drone to perform more complex maneuvers. This included
                                         programming on a Raspberry Pi to control the hardware based on sensor inputs.  
