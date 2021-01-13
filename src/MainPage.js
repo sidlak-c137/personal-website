@@ -650,8 +650,8 @@ class MainPage extends React.Component {
                     </div>
                     <div className="nav">
                             <Link className="button" activeClass="active" to="content1" spy={true} smooth={true} duration={500}><a className="a" href="#1">About</a></Link>
-                            <Link className="button" activeClass="active" to="content2" spy={true} smooth={true} duration={500}><a className="a" href="#2">Tech Skills</a></Link>
-                            <Link className="button" activeClass="active" to="content3" spy={true} smooth={true} duration={500}><a className="a" href="#3">Work Experiences</a></Link>
+                            <Link className="button" activeClass="active" to="content2" spy={true} smooth={true} duration={500} offset={5} ><a className="a" href="#2">Tech Skills</a></Link>
+                            <Link className="button" activeClass="active" to="content3" spy={true} smooth={true} duration={500} offset={5} ><a className="a" href="#3">Work Experiences</a></Link>
                             <Link className="button" activeClass="active" to="content4" spy={true} smooth={true} duration={500}><a className="a" href="#4">Student Life</a></Link>
                             <Link className="button" activeClass="active" to="content5" spy={true} smooth={true} duration={500}><a className="a" href="#5">Research</a></Link>
                             <Link className="button" activeClass="active" to="content6" spy={true} smooth={true} duration={500}><a className="a" href="#6">Contact Me!</a></Link>
