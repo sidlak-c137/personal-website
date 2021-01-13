@@ -489,7 +489,7 @@ class MainPage extends React.Component {
                                         Currently, I am working on a project to enable higher quality stoma care at a lower cost for people with intestinal or urinary diversion. In particular
                                         we are aiming to provide a better, more accessable method to post-operative wafer fitting. To do this, we will develop and test an electronic imaging system
                                         for hospital and home use for better preparation, application, and monitoring of stoma wafers, as well as for creating images of the stoma and peristomal area
-                                        for further analysis. The introduction of our system, the Stoma-Wafer Inspec-tion and Fit Tool (SWIFT), into modern healthcare will improve the quality of life,
+                                        for further analysis. The introduction of our system, the Stoma-Wafer Inspection and Fit Tool (SWIFT), into modern healthcare will improve the quality of life,
                                         mobility, independence, mood, self-confidence, and the overall health of ostomates.
                                     </p>
                                 </div>
