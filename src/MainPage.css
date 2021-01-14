@@ -31,13 +31,12 @@ body {
 }
 
 .element {
-    min-height: 500px;
-    height: fit-content;
     background-color: white;
     width: 100%;
     display: flex;
-    margin: auto;
-    margin-top: 5px;
+    border-top-style: solid;
+    border-top-color: rgb(243, 243, 243);
+    border-top-width: 5px;
 }
 
 .element-top {
@@ -60,7 +59,7 @@ body {
 
 .spacer {
     height: calc(100vh - 740px);
-    width: auto;
+    width: 100%;
     background-color: rgb(243, 243, 243);
     padding: 20px;
 }
@@ -122,6 +121,8 @@ body {
     line-height: 1.75em;
     color: #888;
     margin: auto;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
 }
 
 .name {
